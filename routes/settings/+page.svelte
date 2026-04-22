@@ -6,6 +6,10 @@
   function handleBack(): void {
     goto(resolve('/'))
   }
+
+  function handleCredits(): void {
+    goto(resolve('/credits'))
+  }
 </script>
 
-<SettingsScreen onBack={handleBack} />
+<SettingsScreen onBack={handleBack} onCredits={handleCredits} />

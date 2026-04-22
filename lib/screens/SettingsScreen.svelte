@@ -1,17 +1,29 @@
 <script lang="ts">
   import Slider from '@hollowdark/lib/components/Slider.svelte'
+  import TextSizeChoice from '@hollowdark/lib/components/TextSizeChoice.svelte'
   import ToggleSwitch from '@hollowdark/lib/components/ToggleSwitch.svelte'
   import { ambientVolume, masterMuted } from '@hollowdark/lib/audio/state'
-  import { reduceMotion } from '@hollowdark/lib/display/state'
+  import { highContrast, reduceMotion } from '@hollowdark/lib/accessibility/state'
+  import { textSize, type TextSize } from '@hollowdark/lib/reading/state'
   import { APP_VERSION_FULL } from '@hollowdark/lib/version/version'
 
   interface Props {
     onBack: () => void
+    onCredits: () => void
   }
 
-  let { onBack }: Props = $props()
+  let { onBack, onCredits }: Props = $props()
 
   const volumePercent = $derived(Math.round($ambientVolume * 100))
+
+  const TEXT_SIZE_LABELS: Record<TextSize, string> = {
+    small: 'Small',
+    medium: 'Medium',
+    large: 'Large',
+    'extra-large': 'Extra large'
+  }
+
+  const currentTextSizeLabel = $derived(TEXT_SIZE_LABELS[$textSize])
 
   function setMuted(next: boolean): void {
     masterMuted.set(next)
@@ -21,8 +33,16 @@
     ambientVolume.set(next)
   }
 
+  function setTextSize(next: TextSize): void {
+    textSize.set(next)
+  }
+
   function setReduceMotion(next: boolean): void {
     reduceMotion.set(next)
+  }
+
+  function setHighContrast(next: boolean): void {
+    highContrast.set(next)
   }
 </script>
 
@@ -34,14 +54,33 @@
 
   <div class="body">
     <section class="group">
-      <h2 class="group-label">Audio</h2>
+      <h2 class="group-label">Reading</h2>
+
+      <div class="row stacked">
+        <div class="row-label">
+          <p class="row-name">Text size</p>
+          <p class="row-hint">Affects headings, menus, and the reading column.</p>
+        </div>
+        <p class="row-value">{currentTextSizeLabel}</p>
+      </div>
+      <div class="row-body">
+        <TextSizeChoice value={$textSize} onChange={setTextSize} />
+      </div>
+    </section>
+
+    <section class="group">
+      <h2 class="group-label">Sound</h2>
 
       <div class="row">
         <div class="row-label">
           <p class="row-name">Mute everything</p>
           <p class="row-hint">Silence all sound, regardless of volume.</p>
         </div>
-        <ToggleSwitch value={$masterMuted} label="Mute everything" onChange={setMuted} />
+        <ToggleSwitch
+          value={$masterMuted}
+          label="Mute everything"
+          onChange={setMuted}
+        />
       </div>
 
       <div class="row">
@@ -64,20 +103,29 @@
     </section>
 
     <section class="group">
-      <h2 class="group-label">Display</h2>
+      <h2 class="group-label">Accessibility</h2>
 
       <div class="row">
         <div class="row-label">
           <p class="row-name">Reduce motion</p>
-          <p class="row-hint">
-            Hide the falling leaves and trim long transitions. Overrides
-            the system preference.
-          </p>
+          <p class="row-hint">Trim transitions and suppress animated detail.</p>
         </div>
         <ToggleSwitch
           value={$reduceMotion}
           label="Reduce motion"
           onChange={setReduceMotion}
+        />
+      </div>
+
+      <div class="row">
+        <div class="row-label">
+          <p class="row-name">Higher contrast</p>
+          <p class="row-hint">Brighten text against the background.</p>
+        </div>
+        <ToggleSwitch
+          value={$highContrast}
+          label="Higher contrast"
+          onChange={setHighContrast}
         />
       </div>
     </section>
@@ -87,8 +135,9 @@
 
       <div class="about">
         <p class="about-title">Hollowdark</p>
-        <p class="about-line">Version {APP_VERSION_FULL}</p>
         <p class="about-line">A literary life simulation.</p>
+        <p class="about-line muted">Version {APP_VERSION_FULL}</p>
+        <button class="credits-link" onclick={onCredits}>Credits ›</button>
       </div>
     </section>
   </div>
@@ -163,6 +212,16 @@
     border-bottom: 1px solid rgba(232, 226, 213, 0.06);
   }
 
+  .row.stacked {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .row-body {
+    padding: 0 0 var(--space-3);
+    border-bottom: 1px solid rgba(232, 226, 213, 0.06);
+  }
+
   .row-label {
     display: flex;
     flex-direction: column;
@@ -182,6 +241,13 @@
     font-family: var(--font-ui);
     font-size: var(--text-sm);
     color: var(--color-text-tertiary);
+    margin: 0;
+  }
+
+  .row-value {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
     margin: 0;
   }
 
@@ -217,7 +283,25 @@
   .about-line {
     font-family: var(--font-ui);
     font-size: var(--text-sm);
-    color: var(--color-text-tertiary);
+    color: var(--color-text-secondary);
     margin: 0;
+  }
+
+  .about-line.muted {
+    color: var(--color-text-tertiary);
+  }
+
+  .credits-link {
+    align-self: flex-start;
+    margin-top: var(--space-3);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-accent);
+    letter-spacing: 0.3px;
+    transition: color var(--transition-fast);
+  }
+
+  .credits-link:hover {
+    color: var(--color-text);
   }
 </style>

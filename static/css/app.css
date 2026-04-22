@@ -40,6 +40,48 @@ body.crisis-mode {
   --color-accent: var(--color-accent-warm);
 }
 
+html.text-size-small {
+  --text-xs: 10px;
+  --text-sm: 12px;
+  --text-base: 14px;
+  --text-md: 16px;
+  --text-lg: 19px;
+  --text-xl: 24px;
+}
+
+html.text-size-large {
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 18px;
+  --text-md: 20px;
+  --text-lg: 24px;
+  --text-xl: 32px;
+}
+
+html.text-size-extra-large {
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 20px;
+  --text-md: 22px;
+  --text-lg: 27px;
+  --text-xl: 36px;
+}
+
+html.high-contrast {
+  --color-text: #f3ecdc;
+  --color-text-secondary: #b4ac9c;
+  --color-text-tertiary: #857f72;
+}
+
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
 *,
 *::before,
 *::after {
