@@ -3,15 +3,16 @@
   import { createRNG } from '@hollowdark/rng/seeded'
   import { LEAF_VARIANTS } from '@hollowdark/lib/leaves/variants'
   import { spawnLeaf } from '@hollowdark/lib/leaves/spawn'
+  import { isLeafOffscreen, stepLeaf } from '@hollowdark/lib/leaves/physics'
   import {
-    initialWindState,
-    isLeafOffscreen,
-    stepLeaf,
-    updateWind
-  } from '@hollowdark/lib/leaves/physics'
-  import type { Leaf, SceneDimensions, WindState } from '@hollowdark/lib/leaves/types'
+    initialWindSystem,
+    particleOpacity,
+    stepWind,
+    type IdSource
+  } from '@hollowdark/lib/leaves/wind'
+  import type { Leaf, SceneDimensions, WindSystem } from '@hollowdark/lib/leaves/types'
 
-  const TARGET_LEAF_COUNT = 12
+  const TARGET_LEAF_COUNT = 14
   const GROUND_Y_RATIO = 0.86
 
   const rng = createRNG(Math.floor(performance.now() * 1000) | 0)
@@ -19,12 +20,19 @@
   let container: HTMLDivElement | null = null
   let scene: SceneDimensions = $state({ width: 0, height: 0, groundY: 0 })
   let leaves: Leaf[] = $state([])
-  let wind: WindState = $state(initialWindState(rng))
+  let wind: WindSystem = $state(initialWindSystem(rng))
 
   let rafId: number | null = null
   let lastTimeMs = 0
   let nextLeafId = 0
+  let nextGustId = 0
+  let nextParticleId = 0
   let resizeObserver: ResizeObserver | null = null
+
+  const ids: IdSource = {
+    nextGustId: () => nextGustId++,
+    nextParticleId: () => nextParticleId++
+  }
 
   function measure(): void {
     if (!container) return
@@ -54,7 +62,7 @@
       const dt = dtMs / 1000
       const timeS = nowMs / 1000
 
-      wind = updateWind(wind, dtMs, rng)
+      wind = stepWind(wind, dtMs, scene, rng, ids)
 
       const next: Leaf[] = []
       for (const leaf of leaves) {
@@ -89,13 +97,32 @@
     <defs>
       {#each LEAF_VARIANTS as variant (variant.id)}
         <symbol id="leaf-{variant.id}" viewBox={variant.viewBox}>
-          <path d={variant.pathData} fill="currentColor" />
+          <path
+            d={variant.pathData}
+            fill="currentColor"
+            stroke="currentColor"
+            stroke-width="0.6"
+            stroke-linejoin="round"
+          />
         </symbol>
       {/each}
     </defs>
   </svg>
 
   <div class="ground" style:top="{scene.groundY}px"></div>
+
+  {#if wind.activeGust}
+    {#each wind.activeGust.particles as particle (particle.id)}
+      <div
+        class="wind-particle"
+        style:left="{particle.x}px"
+        style:top="{particle.y}px"
+        style:width="{particle.size}px"
+        style:height="{particle.size}px"
+        style:opacity={particleOpacity(particle)}
+      ></div>
+    {/each}
+  {/if}
 
   {#each leaves as leaf (leaf.id)}
     <svg
@@ -111,8 +138,6 @@
       <use href="#leaf-{leaf.variantId}" />
     </svg>
   {/each}
-
-  <div class="wind-veil" class:active={wind.active} style:--wind-dir={wind.direction}></div>
 </div>
 
 <style>
@@ -143,7 +168,6 @@
       rgba(232, 226, 213, 0) 100%
     );
     opacity: 0.6;
-    pointer-events: none;
   }
 
   .leaf {
@@ -153,36 +177,13 @@
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
   }
 
-  .wind-veil {
+  .wind-particle {
     position: absolute;
-    inset: 0;
+    border-radius: 50%;
+    background: rgba(232, 226, 213, 0.45);
+    transform: translate(-50%, -50%);
     pointer-events: none;
-    opacity: 0;
-    transition: opacity 800ms ease-out;
-    background-image: repeating-linear-gradient(
-      calc(90deg + 6deg * var(--wind-dir, 1)),
-      rgba(232, 226, 213, 0.03) 0px,
-      rgba(232, 226, 213, 0.03) 1px,
-      transparent 1px,
-      transparent 60px
-    );
-    background-size: 120px 120px;
-    animation: drift 3.5s linear infinite;
-    animation-play-state: paused;
-  }
-
-  .wind-veil.active {
-    opacity: 1;
-    animation-play-state: running;
-  }
-
-  @keyframes drift {
-    from {
-      background-position: 0 0;
-    }
-    to {
-      background-position: calc(120px * var(--wind-dir, 1)) 0;
-    }
+    box-shadow: 0 0 4px rgba(232, 226, 213, 0.2);
   }
 
   @media (prefers-reduced-motion: reduce) {
