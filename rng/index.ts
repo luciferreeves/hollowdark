@@ -1,2 +1,2 @@
-export { createRNG, type SeededRNG } from 'rng/seeded'
-export { hashString, deriveSeed } from 'rng/derive'
+export { createRNG, type SeededRNG } from './seeded'
+export { hashString, deriveSeed } from './derive'

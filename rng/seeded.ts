@@ -1,4 +1,4 @@
-import { deriveSeed, hashString } from 'rng/derive'
+import { deriveSeed, hashString } from './derive'
 
 /**
  * Seeded PRNG. All gameplay randomness routes through this interface —

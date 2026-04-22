@@ -13,7 +13,7 @@ export {
   monthSeason,
   type MonthName,
   type Season
-} from 'time/calendar'
+} from './calendar'
 
 export {
   addDays,
@@ -32,7 +32,7 @@ export {
   toAbsoluteDays,
   weeksBetween,
   type GameTime
-} from 'time/gameTime'
+} from './gameTime'
 
 export {
   TICK_UNIT_BY_LIFE_STAGE,
@@ -40,6 +40,6 @@ export {
   tickUnitForAge,
   type LifeStage,
   type TickUnit
-} from 'time/granularity'
+} from './granularity'
 
-export { SPEEDS, type Speed } from 'time/speed'
+export { SPEEDS, type Speed } from './speed'

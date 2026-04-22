@@ -8,7 +8,7 @@ import {
   REGULAR_MONTH_COUNT,
   daysInMonth,
   monthName
-} from 'time/calendar'
+} from './calendar'
 
 /**
  * A position in game time. Immutable — all arithmetic returns a new value.

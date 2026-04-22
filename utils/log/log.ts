@@ -11,16 +11,16 @@ function emit(level: LogLevel, message: string, context?: Record<string, unknown
   const payload = context ? `${message} ${JSON.stringify(context)}` : message
   switch (level) {
     case 'debug':
-        console.log(payload)
+      console.log(payload)
       return
     case 'info':
-        console.info(payload)
+      console.info(payload)
       return
     case 'warn':
-        console.warn(payload)
+      console.warn(payload)
       return
     case 'error':
-        console.error(payload)
+      console.error(payload)
       return
   }
 }
@@ -28,8 +28,10 @@ function emit(level: LogLevel, message: string, context?: Record<string, unknown
 export const log = {
   debug: (message: string, context?: Record<string, unknown>): void =>
     emit('debug', message, context),
-  info: (message: string, context?: Record<string, unknown>): void => emit('info', message, context),
-  warn: (message: string, context?: Record<string, unknown>): void => emit('warn', message, context),
+  info: (message: string, context?: Record<string, unknown>): void =>
+    emit('info', message, context),
+  warn: (message: string, context?: Record<string, unknown>): void =>
+    emit('warn', message, context),
   error: (message: string, context?: Record<string, unknown>): void =>
     emit('error', message, context)
 } as const

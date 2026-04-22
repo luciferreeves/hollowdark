@@ -1,8 +1,8 @@
 /**
  * Structural deep equality, used by determinism tests to compare
  * simulation snapshots. Handles plain objects, arrays, Maps, Sets, Dates,
- * and primitives. Does not handle class instances with custom equality
- * or cyclic object graphs — simulation state is a tree, not a graph.
+ * and primitives. Does not handle class instances with custom equality or
+ * cyclic object graphs — simulation state is a tree, not a graph.
  */
 export function deepEqual(a: unknown, b: unknown): boolean {
   if (Object.is(a, b)) return true
