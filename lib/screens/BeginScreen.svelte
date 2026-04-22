@@ -1,6 +1,8 @@
 <script lang="ts">
+  import { base } from '$app/paths'
   import AppTitle from '@hollowdark/lib/components/AppTitle.svelte'
   import AppVersion from '@hollowdark/lib/components/AppVersion.svelte'
+  import AudioPlayer from '@hollowdark/lib/components/AudioPlayer.svelte'
   import BeginActions from '@hollowdark/lib/components/BeginActions.svelte'
   import type { BeginState } from '@hollowdark/loading/session'
 
@@ -19,6 +21,8 @@
     onSettings,
     onCredits
   }: Props = $props()
+
+  const titleTrackSrc = `${base}/audio/title/piano-relaxing.mp3`
 </script>
 
 <section class="begin">
@@ -29,6 +33,8 @@
   <BeginActions {state} {onBegin} {onContinue} {onSettings} {onCredits} />
 
   <AppVersion />
+
+  <AudioPlayer src={titleTrackSrc} loop />
 </section>
 
 <style>
