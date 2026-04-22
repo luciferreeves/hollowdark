@@ -1,6 +1,7 @@
 import js from '@eslint/js'
 import ts from 'typescript-eslint'
 import svelte from 'eslint-plugin-svelte'
+import svelteParser from 'svelte-eslint-parser'
 import prettier from 'eslint-config-prettier'
 import globals from 'globals'
 
@@ -52,7 +53,9 @@ export default ts.config(
   {
     files: ['**/*.svelte', '**/*.svelte.ts'],
     languageOptions: {
+      parser: svelteParser,
       parserOptions: {
+        parser: ts.parser,
         projectService: true,
         extraFileExtensions: ['.svelte']
       }
@@ -67,19 +70,19 @@ export default ts.config(
           selector:
             "CallExpression[callee.type='MemberExpression'][callee.object.name='Math'][callee.property.name='random']",
           message:
-            'Math.random() is forbidden in gameplay code. Use the seeded RNG from rng/ — determinism is load-bearing (ARCHITECTURE.md §26).'
+            'Math.random() is forbidden in gameplay code. Use the seeded RNG.'
         },
         {
           selector:
             "CallExpression[callee.type='MemberExpression'][callee.object.name='crypto'][callee.property.name='getRandomValues']",
           message:
-            'crypto.getRandomValues() is forbidden in gameplay code. Use the seeded RNG from rng/.'
+            'crypto.getRandomValues() is forbidden in gameplay code. Use the seeded RNG.'
         },
         {
           selector:
             "CallExpression[callee.type='MemberExpression'][callee.object.name='Date'][callee.property.name='now']",
           message:
-            'Date.now() is forbidden in gameplay code. Use GameTime from time/ for gameplay logic. Date.now() is permitted only in tests, scripts, and outside the simulation (metadata, logging, performance measurement).'
+            'Date.now() is forbidden in gameplay code. Use GameTime. Date.now() is permitted only in tests, scripts, and outside the simulation.'
         }
       ],
       '@typescript-eslint/no-explicit-any': 'error'

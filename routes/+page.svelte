@@ -1,35 +1,33 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
+  import BeginScreen from '@hollowdark/ui-lib/components/BeginScreen.svelte'
+  import InitialLoadScreen from '@hollowdark/ui-lib/components/InitialLoadScreen.svelte'
+  import { runStubInitialLoad } from '@hollowdark/loading/stub'
+  import { detectBeginState, type BeginState } from '@hollowdark/loading/session'
+
+  type View = 'loading' | 'begin'
+
+  let view: View = $state('loading')
+  let beginState: BeginState = $state({ kind: 'first-ever' })
+
+  onMount(async () => {
+    await runStubInitialLoad()
+    beginState = await detectBeginState()
+    view = 'begin'
+  })
+
+  function handleBegin(): void {}
+  function handleContinue(): void {}
+  function handleSettings(): void {}
 </script>
 
-<main class="placeholder">
-  <p class="title">Hollowdark</p>
-  <p class="note">Scaffolding in place.</p>
-</main>
-
-<style>
-  .placeholder {
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-8);
-  }
-
-  .title {
-    font-family: var(--font-body);
-    font-size: var(--text-xl);
-    font-style: italic;
-    letter-spacing: 2px;
-    color: var(--color-text);
-    margin-bottom: var(--space-4);
-  }
-
-  .note {
-    font-family: var(--font-ui);
-    font-size: var(--text-xs);
-    color: var(--color-text-tertiary);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-</style>
+{#if view === 'loading'}
+  <InitialLoadScreen />
+{:else}
+  <BeginScreen
+    state={beginState}
+    onBegin={handleBegin}
+    onContinue={handleContinue}
+    onSettings={handleSettings}
+  />
+{/if}
