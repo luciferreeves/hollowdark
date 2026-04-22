@@ -1,0 +1,238 @@
+/* ---------------------------------------------------------------------------
+ * Hollowdark — global styles and design tokens
+ *
+ * Component styles live in scoped <style> blocks per ui/00-ui-principles.md
+ * and rules/01-code-style.md. This file is the only place for reset, root
+ * tokens, scrollbar styling, no-select, and base typography.
+ * ------------------------------------------------------------------------ */
+
+:root {
+  /* Colors — dark mode default */
+  --color-bg: #13100e;
+  --color-text: #e5dfd3;
+  --color-text-secondary: #8a8275;
+  --color-text-tertiary: #5c564c;
+  --color-accent: #b8884a;
+  --color-accent-warm: #c47a2e; /* crisis mode */
+
+  /* Fonts */
+  --font-body: 'Literata', 'Source Serif Pro', Georgia, serif;
+  --font-ui: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-memoir: 'Crimson Pro', 'Source Serif Pro', Georgia, serif;
+
+  /* Spacing (8pt grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* Type scale */
+  --text-xs: 11px;
+  --text-sm: 13px;
+  --text-base: 16px;
+  --text-md: 18px;
+  --text-lg: 21px;
+  --text-xl: 28px;
+
+  /* Line height */
+  --leading-tight: 1.4;
+  --leading-normal: 1.6;
+  --leading-loose: 1.75;
+
+  /* Timing */
+  --transition-soft: 400ms ease-out;
+  --transition-fast: 250ms ease-out;
+  --transition-ceremonial: 600ms ease-out;
+}
+
+/* Crisis-mode palette swap. Engaged via body.crisis-mode — see docs/22-crisis-mode.md */
+body.crisis-mode {
+  --color-bg: #0f0c0b;
+  --color-text: #e5d8c3;
+  --color-accent: var(--color-accent-warm);
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+}
+
+/* Smooth transitions on root colors so crisis-mode changes feel deliberate */
+body {
+  transition:
+    background-color var(--transition-ceremonial),
+    color var(--transition-ceremonial);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Text is not selectable anywhere. This is a reading game, not a document.
+ * Exceptions use the .selectable class (rare — input fields in settings only). */
+*,
+*::before,
+*::after {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
+
+.selectable {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* Long-content areas scroll smoothly */
+.scrollable {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Scrollbar styling — minimal, nearly invisible, slightly visible on hover */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(232, 226, 213, 0.08);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(232, 226, 213, 0.18);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(232, 226, 213, 0.08) transparent;
+}
+@media (pointer: coarse) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Base typography — paragraphs */
+p {
+  line-height: var(--leading-normal);
+}
+
+/* Buttons carry no default chrome */
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+button:focus-visible {
+  outline: 1px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Font-face declarations
+ *
+ * Font files ship in static/fonts/ and are sourced separately (Literata,
+ * Inter, Crimson Pro — subset to Latin basics + punctuation). Until they
+ * land, the body falls back through the font-family cascade above.
+ * ------------------------------------------------------------------------ */
+
+@font-face {
+  font-family: 'Literata';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/Literata-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Literata';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/Literata-Italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Literata';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/Literata-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/Inter-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/Inter-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Crimson Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/CrimsonPro-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Crimson Pro';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/CrimsonPro-Italic.woff2') format('woff2');
+}
