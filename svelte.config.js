@@ -20,15 +20,6 @@ const config = {
     paths: {
       base: BASE_PATH
     },
-    prerender: {
-      handleHttpError: ({ path, message }) => {
-        // Font files ship separately from the codebase (see static/css/app.css
-        // @font-face block). Tolerate missing font files during prerender so
-        // the build doesn't block until they land in static/fonts/.
-        if (path.includes('/fonts/')) return
-        throw new Error(message)
-      }
-    },
     files: {
       assets: 'static',
       appTemplate: 'app/app.html',
