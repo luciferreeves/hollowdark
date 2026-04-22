@@ -1,0 +1,45 @@
+id: mirror_coast
+display_name: Mirror Coast
+population_weight: 0.12
+
+climate:
+  summary: Wet autumns, mild winters, cool summers. Fog off the water for most of the year, and a rainy season that runs long.
+  temperature_range_c: [-2, 24]
+  annual_rainfall_mm: 1180
+
+economy:
+  summary: The intellectual and creative heart of the world. Publishing, universities, design studios, the old shipping trade, and a finance industry that quietly funds most of it.
+  dominant_sectors:
+    - publishing
+    - education
+    - design
+    - shipping
+    - finance
+  inequality: high
+
+culture:
+  summary: Cosmopolitan, literate, liberal-leaning, secularised.
+  texture: |
+    People here read. They argue in cafes about things no one else cares about, they know which essay ran in which magazine last month, and they pretend not to care about the weather while building their lives around it. The region prides itself on being tolerant and is visibly less so about money. Old money keeps quiet; new money is loud; the working class is getting priced out of every neighbourhood that remembers it. Under everything, a gentle fog of self-regard.
+
+class_texture: |
+  Sharp inequality with a polite face. The professional class is comfortable and tired. The working class is hanging on in the old port wards and the inland mill towns. Real poverty, mostly hidden, sits in single-room occupancies above the shops and in the long-term rentals of the old dock neighbourhoods.
+
+religion:
+  covenant: 0.25
+  old_faith: 0.05
+  quiet_path: 0.25
+  secular: 0.45
+
+city_ids:
+  - avenford
+  - kellisport
+  - lightwater
+
+institution_ids:
+  - halfire_press
+  - lightwater_university
+
+stereotypes:
+  held_by_others: Snobs. Pricing everyone out of housing. Rude in restaurants. Read too many books. Actually, pretty nice if you get to know them.
+  self_image: We're sophisticated, literate, and put-upon by the rest of the country's resentment. We built the publishing industry, the universities, the shipping trade. The fog is ours.

@@ -5,6 +5,9 @@ build/
 dist/
 built/
 
+static/content/
+static/content-manifest.json
+
 .env
 .env.local
 .env.*.local
