@@ -2,7 +2,6 @@
   import AppTitle from '@hollowdark/lib/components/AppTitle.svelte'
   import AppVersion from '@hollowdark/lib/components/AppVersion.svelte'
   import BeginActions from '@hollowdark/lib/components/BeginActions.svelte'
-  import LeafScene from '@hollowdark/lib/components/LeafScene.svelte'
   import type { BeginState } from '@hollowdark/loading/session'
 
   interface Props {
@@ -23,8 +22,6 @@
 </script>
 
 <section class="begin">
-  <LeafScene />
-
   <div class="content">
     <div class="top">
       <AppTitle size={38} subtitle="A Literary Life Simulation" />
@@ -45,12 +42,9 @@
     justify-content: center;
     padding: var(--space-12);
     position: relative;
-    overflow: hidden;
   }
 
   .content {
-    position: relative;
-    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
