@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { TICK_UNIT_BY_LIFE_STAGE, lifeStageForAge, tickUnitForAge } from 'time/granularity'
+import { TICK_UNIT_BY_LIFE_STAGE, lifeStageForAge, tickUnitForAge } from '@hollowdark/time/granularity'
 
 describe('lifeStageForAge', () => {
   test('stage boundaries', () => {

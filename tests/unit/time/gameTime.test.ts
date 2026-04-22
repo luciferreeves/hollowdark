@@ -15,7 +15,7 @@ import {
   makeGameTime,
   toAbsoluteDays,
   weeksBetween
-} from 'time/gameTime'
+} from '@hollowdark/time/gameTime'
 
 describe('makeGameTime validation', () => {
   test('valid regular-month time', () => {

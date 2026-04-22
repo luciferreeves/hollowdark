@@ -1,4 +1,4 @@
-import type { GameTime } from 'time'
+import type { GameTime } from '@hollowdark/time'
 
 /**
  * A substance or behavioural dependency at a given stage of progression.

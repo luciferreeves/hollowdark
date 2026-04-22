@@ -1,4 +1,4 @@
-import type { GameTime } from 'time'
+import type { GameTime } from '@hollowdark/time'
 import type { InstitutionId } from '../entities/base'
 
 export type CareerTrajectory = 'rising' | 'steady' | 'declining' | 'stalled'

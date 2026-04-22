@@ -1,4 +1,4 @@
-import type { GameTime } from 'time'
+import type { GameTime } from '@hollowdark/time'
 
 /** Currently-active mental-health condition. Specific disorder vocabulary
  *  lives in content; the runtime state is shape + kind tag. */

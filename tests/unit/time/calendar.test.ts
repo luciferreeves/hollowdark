@@ -8,7 +8,7 @@ import {
   isFestival,
   monthName,
   monthSeason
-} from 'time/calendar'
+} from '@hollowdark/time/calendar'
 
 describe('calendar constants', () => {
   test('year is 365 days', () => {

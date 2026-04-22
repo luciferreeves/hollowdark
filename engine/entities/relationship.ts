@@ -1,4 +1,4 @@
-import type { GameTime } from 'time'
+import type { GameTime } from '@hollowdark/time'
 import type { BaseEntity, PersonId, RelationshipId } from './base'
 
 export type RelationType =

@@ -1,4 +1,4 @@
-import type { GameTime } from 'time'
+import type { GameTime } from '@hollowdark/time'
 import type { PersonId, RoutineId } from './base'
 
 export type RoutineCategory = 'work' | 'relationships' | 'self' | 'home' | 'play' | 'service'

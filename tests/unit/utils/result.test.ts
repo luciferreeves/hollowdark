@@ -9,7 +9,7 @@ import {
   unwrap,
   unwrapOr,
   type Result
-} from 'utils/result'
+} from '@hollowdark/utils/result'
 
 describe('Result constructors and predicates', () => {
   test('ok wraps a value', () => {

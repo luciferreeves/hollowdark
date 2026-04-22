@@ -1,4 +1,4 @@
-import type { GameTime } from 'time'
+import type { GameTime } from '@hollowdark/time'
 
 /**
  * Current-week emotional state on the valence × arousal plane.

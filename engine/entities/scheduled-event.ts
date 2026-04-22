@@ -1,4 +1,4 @@
-import type { GameTime } from 'time'
+import type { GameTime } from '@hollowdark/time'
 import type { PersonId, ScheduledEventId } from './base'
 
 /**

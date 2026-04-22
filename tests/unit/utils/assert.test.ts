@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { assert, assertDefined, assertNever } from 'utils/assert'
+import { assert, assertDefined, assertNever } from '@hollowdark/utils/assert'
 
 describe('assert', () => {
   test('passes on truthy condition', () => {

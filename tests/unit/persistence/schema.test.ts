@@ -7,7 +7,7 @@ import {
   SCHEMA_VERSION,
   USER_DATA_DB_NAME,
   USER_DATA_SCHEMA_V1
-} from 'persistence'
+} from '@hollowdark/persistence'
 
 /**
  * The Dexie schema is a versioned contract with on-device storage. Any

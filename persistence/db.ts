@@ -12,8 +12,8 @@ import type {
   ScheduledEvent,
   World,
   WorldEvent
-} from 'engine'
-import type { JsonValue } from 'utils'
+} from '@hollowdark/engine'
+import type { JsonValue } from '@hollowdark/utils'
 
 import {
   AUDIO_CACHE_DB_NAME,

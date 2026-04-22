@@ -1,4 +1,4 @@
-import type { GameTime } from 'time'
+import type { GameTime } from '@hollowdark/time'
 import type { CareerState } from '../career'
 import type { EconomicState } from '../economics'
 import type { HealthState, MentalHealthState, Condition } from '../health'

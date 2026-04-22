@@ -32,24 +32,9 @@ const config = {
       serviceWorker: 'service-worker.ts'
     },
     alias: {
-      engine: 'engine',
-      events: 'events',
-      'content-system': 'content-system',
-      flow: 'flow',
-      scene: 'scene',
-      memoir: 'memoir',
-      birth: 'birth',
-      death: 'death',
-      continuation: 'continuation',
-      worldgen: 'worldgen',
-      persistence: 'persistence',
-      rng: 'rng',
-      time: 'time',
-      loading: 'loading',
-      'ui-lib': 'ui-lib',
-      utils: 'utils',
-      content: 'content',
-      built: 'built'
+      // Single scoped alias for every cross-module import. Same-directory
+      // siblings stay on relative imports (./x) per rules/01-code-style.md.
+      '@hollowdark': '.'
     }
   }
 }

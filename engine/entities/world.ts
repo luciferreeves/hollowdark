@@ -1,4 +1,4 @@
-import type { GameTime } from 'time'
+import type { GameTime } from '@hollowdark/time'
 import type { PersonId, PlaceId, WorldEventId, WorldId } from './base'
 import type { ScheduledEvent } from './scheduled-event'
 
