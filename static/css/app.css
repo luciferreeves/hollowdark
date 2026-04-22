@@ -56,7 +56,7 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-md);
   line-height: var(--leading-normal);
-  cursor: url('../cursors/cursor.svg') 12 12, auto;
+  cursor: url('../cursors/cursor.svg') 2 2, auto;
 }
 
 a,
@@ -66,12 +66,12 @@ summary,
 select,
 [role='button'],
 [role='link'] {
-  cursor: url('../cursors/cursor-pointer.svg') 12 12, pointer;
+  cursor: url('../cursors/cursor-pointer.svg') 11 2, pointer;
 }
 
 input,
 textarea {
-  cursor: url('../cursors/cursor.svg') 12 12, text;
+  cursor: url('../cursors/cursor.svg') 2 2, text;
 }
 
 body {
