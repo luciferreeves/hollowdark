@@ -1,0 +1,10 @@
+import type { GameTime } from 'time'
+import type { PlaceId } from './base'
+
+/** A span of time a character lived at a specific place. Open-ended if the
+ *  character still lives there. */
+export interface ResidenceEntry {
+  readonly placeId: PlaceId
+  readonly from: GameTime
+  readonly to: GameTime | null
+}
