@@ -41,11 +41,11 @@ jobs:
         env:
           BASE_PATH: /${{ github.event.repository.name }}
 
+      # Pages must be enabled once in Settings → Pages with Source set to
+      # "GitHub Actions". The workflow's GITHUB_TOKEN can't provision the
+      # site itself (creating a Pages site is administration-scoped, beyond
+      # the `pages: write` permission this workflow holds).
       - uses: actions/configure-pages@v5
-        with:
-          # Enable Pages via the workflow's token on first run so the repo
-          # doesn't need a manual trip to Settings → Pages.
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
