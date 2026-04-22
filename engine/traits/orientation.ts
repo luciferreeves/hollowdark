@@ -1,6 +1,6 @@
 /**
  * Gender identity and sexual orientation. Continuous axes plus a discrete
- * gender tag. See docs/04-traits.md §"Layer 2" and docs/10-sexuality.md.
+ * gender tag.
  *
  *   sexualAttraction   0 = hetero-exclusive, 100 = homo-exclusive
  *   romanticAttraction independent continuous axis

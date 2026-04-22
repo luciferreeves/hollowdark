@@ -157,8 +157,6 @@ describe('createRNG — output shape', () => {
       ])
       if (pick === 'rare') lowCount++
     }
-    // Expected ~5, allow plenty of slack for variance; just confirm the
-    // distribution isn't inverted.
     expect(lowCount).toBeLessThan(50)
   })
 
@@ -212,15 +210,9 @@ describe('SeededRNG.sub — sub-RNG derivation', () => {
 })
 
 describe('byte-level determinism snapshot', () => {
-  // Locks the PRNG implementation. Saved worlds depend on exact byte
-  // reproduction — if this test breaks, it means the PRNG changed, and
-  // every existing save relying on this seed will diverge. Treat failure
-  // as a migration concern, not a "just update the snapshot" fix.
   test('createRNG("hollowdark").next() × 5 matches canonical sequence', () => {
     const rng = createRNG('hollowdark')
     const first5 = [rng.next(), rng.next(), rng.next(), rng.next(), rng.next()]
-    // Values computed from the current mulberry32 + xmur3 implementation.
-    // Reproducible locally via: createRNG('hollowdark').next() × 5.
     expect(first5).toMatchInlineSnapshot(`
       [
         0.14088608953170478,

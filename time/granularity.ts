@@ -1,12 +1,7 @@
 /**
- * Tick granularity by life stage.
- *
- * One tick represents a different span of time depending on the character's
- * age — infancy advances in years because there isn't weekly texture worth
- * resolving, adulthood in weeks because that's the rhythm the design lives
- * at. See docs/05-time-system.md and ARCHITECTURE.md §5.
+ * The eight life stages a character moves through. Used to pick how much
+ * wall-clock time one simulation tick represents at a given age.
  */
-
 export type LifeStage =
   | 'infancy'
   | 'early_childhood'
@@ -17,8 +12,15 @@ export type LifeStage =
   | 'late_adult'
   | 'elderly'
 
+/** How much game time one tick advances. */
 export type TickUnit = 'year' | 'season' | 'month' | 'week'
 
+/**
+ * Tick granularity per life stage. Infancy advances in years because
+ * there isn't weekly texture worth resolving; adulthood in weeks because
+ * that's the rhythm the design lives at; elderly in months as the pace
+ * slows again.
+ */
 export const TICK_UNIT_BY_LIFE_STAGE: Readonly<Record<LifeStage, TickUnit>> = {
   infancy: 'year',
   early_childhood: 'season',
@@ -30,6 +32,9 @@ export const TICK_UNIT_BY_LIFE_STAGE: Readonly<Record<LifeStage, TickUnit>> = {
   elderly: 'month'
 }
 
+/**
+ * Bucket an age in whole years into its life stage. Throws on negative age.
+ */
 export function lifeStageForAge(ageYears: number): LifeStage {
   if (ageYears < 0) throw new Error(`Invalid age: ${ageYears}`)
   if (ageYears < 3) return 'infancy'
@@ -42,6 +47,7 @@ export function lifeStageForAge(ageYears: number): LifeStage {
   return 'elderly'
 }
 
+/** Shortcut: map an age directly to its tick unit. */
 export function tickUnitForAge(ageYears: number): TickUnit {
   return TICK_UNIT_BY_LIFE_STAGE[lifeStageForAge(ageYears)]
 }

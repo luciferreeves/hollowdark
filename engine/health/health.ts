@@ -41,10 +41,9 @@ export interface Condition {
 }
 
 /**
- * A condition the simulation tracks but the character doesn't yet know about.
- * Surface paths include worsening symptoms, doctor visits, routine screens,
- * or incidental discovery (docs/08-mental-health.md §"Suicide risk" for the
- * comparable mental-health pattern; this covers physical equivalents).
+ * A condition the simulation tracks but the character doesn't yet know
+ * about. Surface paths include worsening symptoms, doctor visits, routine
+ * screens, or incidental discovery.
  */
 export interface UndiagnosedCondition {
   readonly id: string

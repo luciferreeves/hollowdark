@@ -1,8 +1,7 @@
 import type { GameTime } from '@hollowdark/time/gameTime'
 
 /**
- * A substance or behavioural dependency at a given stage of progression.
- * Stages mirror docs/08-mental-health.md §"Addiction modeled honestly":
+ * A substance or behavioural dependency at a given stage of progression:
  * experimentation → regular use → problem use → dependence → crisis →
  * recovery | chronic | death.
  */

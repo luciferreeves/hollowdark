@@ -1,6 +1,6 @@
 /**
- * Big Five temperament profile, each 0–100. Mostly stable across a life
- * with slow drift under sustained conditions. See docs/04-traits.md §"Layer 1".
+ * Big Five temperament profile. Each axis is 0–100, mostly stable across
+ * a life with slow drift under sustained conditions.
  */
 export interface BigFiveProfile {
   readonly openness: number

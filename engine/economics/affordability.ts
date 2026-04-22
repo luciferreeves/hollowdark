@@ -1,8 +1,7 @@
 /**
  * The "What you could afford" surface on the Money screen. Hidden numbers
  * resolve into qualitative feasibility labels so the player answers
- * "can I afford this?" without ever seeing a number (docs/09-economy.md
- * §"The 'What you could afford' design").
+ * "can I afford this?" without ever seeing a number.
  */
 export type Feasibility =
   | 'comfortable'

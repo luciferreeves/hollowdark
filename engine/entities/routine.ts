@@ -1,5 +1,5 @@
 import type { GameTime } from '@hollowdark/time/gameTime'
-import type { PersonId, RoutineId } from './base'
+import type { PersonId, RoutineId } from '@hollowdark/engine/entities/base'
 
 export type RoutineCategory = 'work' | 'relationships' | 'self' | 'home' | 'play' | 'service'
 
@@ -27,7 +27,7 @@ export interface RoutineItem {
 /**
  * Persistent weekly commitments for a character. Routines run silently in
  * the flow stream — the player sets them once, they keep running until
- * changed (docs/05-time-system.md §"Routines and flow").
+ * changed.
  */
 export interface Routine {
   readonly id: RoutineId

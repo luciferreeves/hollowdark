@@ -67,7 +67,6 @@ describe('type-narrowing', () => {
   test('isOk narrows to Ok<T>', () => {
     const r: Result<number, string> = ok(10)
     if (isOk(r)) {
-      // Type-level check — if isOk doesn't narrow, this line fails to compile.
       const n: number = r.value
       expect(n).toBe(10)
     } else {

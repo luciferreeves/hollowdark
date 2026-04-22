@@ -1,13 +1,12 @@
-import { deriveSeed, hashString } from './derive'
+import { deriveSeed, hashString } from '@hollowdark/rng/derive'
 
 /**
  * Seeded PRNG. All gameplay randomness routes through this interface —
- * Math.random is forbidden in gameplay code (see ARCHITECTURE.md §26
- * and eslint.config.js).
+ * Math.random is forbidden in gameplay code (see the ESLint rule).
  *
  * Guarantees:
  *   - Same seed produces the same infinite sequence, bit-for-bit.
- *   - sub(label) produces a deterministic child stream, independent of
+ *   - `sub(label)` produces a deterministic child stream, independent of
  *     how the parent stream is consumed.
  *   - Byte-level reproducibility across runs and machines.
  */
@@ -101,8 +100,6 @@ class SeededRNGImpl implements SeededRNG {
       cumulative += weight
       if (roll < cumulative) return value
     }
-    // Numerical safety: if we fall off the end due to floating-point drift,
-    // return the last item rather than throw.
     return items[items.length - 1]![0]
   }
 

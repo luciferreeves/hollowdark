@@ -72,10 +72,10 @@ describe('monthSeason', () => {
   })
 
   test('specific month → season mappings', () => {
-    expect(monthSeason(1)).toBe('spring') // Thawing
-    expect(monthSeason(4)).toBe('summer') // Highsun
-    expect(monthSeason(7)).toBe('autumn') // Firstfall
-    expect(monthSeason(10)).toBe('winter') // Rainfall
+    expect(monthSeason(1)).toBe('spring')
+    expect(monthSeason(4)).toBe('summer')
+    expect(monthSeason(7)).toBe('autumn')
+    expect(monthSeason(10)).toBe('winter')
     expect(monthSeason(13)).toBe('festival')
   })
 })

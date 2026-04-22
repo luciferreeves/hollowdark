@@ -1,5 +1,5 @@
 import type { GameTime } from '@hollowdark/time/gameTime'
-import type { EventLogEntryId, PersonId } from './base'
+import type { EventLogEntryId, PersonId } from '@hollowdark/engine/entities/base'
 
 /**
  * Consequences logged against a specific event resolution. The shape is

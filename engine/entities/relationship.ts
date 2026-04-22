@@ -1,5 +1,5 @@
 import type { GameTime } from '@hollowdark/time/gameTime'
-import type { BaseEntity, PersonId, RelationshipId } from './base'
+import type { BaseEntity, PersonId, RelationshipId } from '@hollowdark/engine/entities/base'
 
 export type RelationType =
   | 'family_parent'
@@ -30,10 +30,9 @@ export type RelationType =
 export type RelationshipState = 'warm' | 'neutral' | 'strained' | 'ruptured' | 'dormant'
 
 /**
- * The four axes of intimacy (docs/07-relationships.md §"Relationship state
- * vector"). Each 0–1. Tracked separately because a marriage can be high
- * on practical and low on emotional — that's a specific life texture, not
- * a compatibility score.
+ * The four axes of intimacy. Each 0–1. Tracked separately because a
+ * marriage can be high on practical and low on emotional — that's a
+ * specific life texture, not a compatibility score.
  */
 export interface IntimacyAxes {
   readonly emotional: number
@@ -88,9 +87,9 @@ export interface LoveLanguageMatrix {
 }
 
 /**
- * Asymmetric perception: A and B each have their own mental model of the
- * relationship. Large asymmetries fire scenes (confession, rebuff, shocked
- * realisation). See docs/07-relationships.md §"Asymmetric perception".
+ * Asymmetric perception: A and B each carry their own mental model of the
+ * relationship. Large asymmetries fire scenes — confession, rebuff,
+ * shocked realisation.
  */
 export interface RelationshipPerception {
   readonly perceivedType: RelationType
@@ -162,15 +161,12 @@ export interface Relationship extends BaseEntity<RelationshipId, 'relationship'>
   readonly lastInteractionAt: GameTime
   readonly interactionFrequency: number
 
-  // Romantic-only details; null when the relationship isn't romantic.
   readonly romanticPhase: RomanticPhase | null
   readonly sexualActivity: SexualActivityState | null
   readonly infidelityHistory: readonly InfidelityEvent[]
   readonly commitmentLevel: number
 
-  // Family-only.
   readonly familyRelationType: FamilyRelation | null
 
-  // Professional-only.
   readonly workRelationType: WorkRelation | null
 }

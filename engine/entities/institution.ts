@@ -1,6 +1,6 @@
 import type { GameTime } from '@hollowdark/time/gameTime'
-import type { BaseEntity, InstitutionId, PersonId, PlaceId } from './base'
-import type { CultureDescriptor } from './place'
+import type { BaseEntity, InstitutionId, PersonId, PlaceId } from '@hollowdark/engine/entities/base'
+import type { CultureDescriptor } from '@hollowdark/engine/entities/place'
 
 export type InstitutionType =
   | 'company'

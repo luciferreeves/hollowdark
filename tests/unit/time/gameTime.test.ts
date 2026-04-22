@@ -137,7 +137,6 @@ describe('addWeeks', () => {
   })
 
   test('52 weeks lands in the festival, not at next year', () => {
-    // 52 × 7 = 364 days; Thawing 1 + 364 = Festival 5 (day 365 - 1)
     expect(addWeeks(makeGameTime(1111, 1, 1), 52)).toMatchObject({
       year: 1111,
       month: 13,
@@ -146,8 +145,6 @@ describe('addWeeks', () => {
   })
 
   test('negative weeks moves backward', () => {
-    // Greening 1 (doy 31) minus 7 days = Thawing 24 (doy 24).
-    // Months are 30 days in this calendar, not 31.
     expect(addWeeks(makeGameTime(1111, 2, 1), -1)).toMatchObject({
       year: 1111,
       month: 1,
@@ -174,7 +171,6 @@ describe('addMonths', () => {
   })
 
   test('overflow into next year wraps through the 13-month cycle', () => {
-    // Rimefrost 15 + 2 months → Festival → Thawing next year, day preserved (15)
     expect(addMonths(makeGameTime(1111, 12, 15), 2)).toMatchObject({
       year: 1112,
       month: 1,

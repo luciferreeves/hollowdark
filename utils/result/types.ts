@@ -8,7 +8,7 @@ export type Err<E> = { readonly ok: false; readonly error: E }
  * Result<T, E> — a recoverable-error return type for functions that can
  * fail without throwing. Used at system boundaries (save/load, content
  * validation, manifest fetch) where the caller needs to decide whether a
- * failure is fatal. Internal pure logic uses plain returns and throws
- * Error for programmer errors (rules/01-code-style.md).
+ * failure is fatal. Internal pure logic still throws `Error` for
+ * programmer errors.
  */
 export type Result<T, E = Error> = Ok<T> | Err<E>

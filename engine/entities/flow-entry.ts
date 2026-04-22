@@ -1,5 +1,5 @@
 import type { GameTime } from '@hollowdark/time/gameTime'
-import type { FlowEntryId, PersonId, PlaceId, WorldEventId } from './base'
+import type { FlowEntryId, PersonId, PlaceId, WorldEventId } from '@hollowdark/engine/entities/base'
 
 /**
  * A compact snapshot of the context that produced a flow passage. Kept

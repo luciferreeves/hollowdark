@@ -1,23 +1,17 @@
 /**
- * IndexedDB schema strings for each of the three Dexie databases.
+ * IndexedDB schema for the user-data database. The string values follow
+ * Dexie's index notation:
  *
- * The schema is versioned deliberately — any change here requires a
- * migration in persistence/migrations.ts (added later). Snapshot tests
- * lock these strings so accidental drift shows up as a failing test
- * rather than a silent mismatch between code and on-device data.
- *
- * Index syntax recap:
  *   &field              primary key (unique)
  *   ++id                auto-incrementing primary key
  *   field               plain index on a scalar
  *   [a+b]               compound index
  *   *field              multi-entry index on an array field
  *
- * See ARCHITECTURE.md §24 for the user-data schema and §7 for the content
- * cache; technical/04-persistence.md for the two-database separation
- * (user data persists forever, content is replaceable per update).
+ * Frozen at module load so a runtime typo on the wrong key throws rather
+ * than silently mutating the schema object. Snapshot tests lock these
+ * strings; any change here requires a migration.
  */
-
 export const USER_DATA_SCHEMA_V1 = Object.freeze({
   worlds: '&id, seed, currentPlayerCharacterId',
   people:
@@ -35,16 +29,19 @@ export const USER_DATA_SCHEMA_V1 = Object.freeze({
   settings: '&key'
 })
 
+/** IndexedDB schema for the content cache — replaceable per content update. */
 export const CONTENT_CACHE_SCHEMA_V1 = Object.freeze({
   content: '&chunkId, version, fetchedAt',
   manifest: '&id'
 })
 
+/** IndexedDB schema for the audio cache — blobs + a manifest row. */
 export const AUDIO_CACHE_SCHEMA_V1 = Object.freeze({
   audio: '&trackId, version, fetchedAt',
   manifest: '&id'
 })
 
+/** Current persistence schema version. Bump when any schema above changes. */
 export const SCHEMA_VERSION = 1 as const
 
 export const USER_DATA_DB_NAME = 'HollowdarkUserData' as const

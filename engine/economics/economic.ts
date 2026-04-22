@@ -1,9 +1,8 @@
 /**
- * Economic state. All numbers in "marks" (the world's universal currency).
- * The player never sees any of these — they surface as prose and qualitative
- * affordability context (docs/09-economy.md, ARCHITECTURE.md §14).
+ * A coarse wealth tier derived from the hidden economic state. Never
+ * displayed numerically; informs surface prose ("struggling", "comfortable",
+ * "old money").
  */
-
 export type EconomicClass =
   | 'destitute'
   | 'struggling'
@@ -44,6 +43,11 @@ export interface Debt {
   readonly apr: number
 }
 
+/**
+ * Hidden economic state for a character. All numbers are in "marks" (the
+ * world's universal currency). Never surfaced to the player as digits —
+ * the simulation drives prose and qualitative affordability context.
+ */
 export interface EconomicState {
   readonly cashOnHand: number
   readonly accounts: readonly Account[]

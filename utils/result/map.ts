@@ -1,5 +1,5 @@
-import { err, ok } from './constructors'
-import type { Result } from './types'
+import { err, ok } from '@hollowdark/utils/result/constructors'
+import type { Result } from '@hollowdark/utils/result/types'
 
 /** Map the value of an ok result; pass errors through unchanged. */
 export function mapResult<T, U, E>(r: Result<T, E>, f: (value: T) => U): Result<U, E> {

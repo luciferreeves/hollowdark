@@ -1,5 +1,5 @@
 import type { GameTime } from '@hollowdark/time/gameTime'
-import type { EventLogEntryId, MemoirId, PersonId } from './base'
+import type { EventLogEntryId, MemoirId, PersonId } from '@hollowdark/engine/entities/base'
 
 export interface MemoirChapter {
   readonly order: number
@@ -12,9 +12,10 @@ export interface MemoirChapter {
 }
 
 /**
- * Generated at character death. 15,000–30,000 words, 8–15 chapters. Persists
- * forever in the world's archive; descendants may find it on the Memoirs
- * shelf or referenced in flow (docs/14-memoirs.md, ARCHITECTURE.md §17).
+ * A character's generated life story. Produced at death, 15,000–30,000
+ * words across 8–15 chapters. Persists forever in the world's archive;
+ * descendants may find it on the Memoirs shelf or see it referenced in
+ * their own flow.
  */
 export interface Memoir {
   readonly id: MemoirId

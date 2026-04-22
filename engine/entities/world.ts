@@ -1,11 +1,11 @@
 import type { GameTime } from '@hollowdark/time/gameTime'
-import type { PersonId, PlaceId, WorldEventId, WorldId } from './base'
-import type { ScheduledEvent } from './scheduled-event'
+import type { PersonId, PlaceId, WorldEventId, WorldId } from '@hollowdark/engine/entities/base'
+import type { ScheduledEvent } from '@hollowdark/engine/entities/scheduled-event'
 
 /**
- * Macro economic state tracked at the world scale. Individual characters'
- * economics are derived against this background (docs/09-economy.md
- * §"Macro economy").
+ * Macro economic state tracked at the world scale — inflation, employment,
+ * market index, recession depth. Individual characters' economics derive
+ * against this background.
  */
 export interface MacroEconomicState {
   readonly inflationAnnual: number
@@ -33,14 +33,14 @@ export interface CrisisState {
 }
 
 /**
- * The world container. One continuous world per player (ARCHITECTURE.md §16,
- * docs/16-world-continuity.md). Time in this world never resets once
- * created; successive player characters advance it forward.
+ * The world container. One continuous world per player. Time in this world
+ * never resets once created; successive player characters advance it forward.
+ * `createdAt` is a real-world ISO timestamp, not a `GameTime`.
  */
 export interface World {
   readonly id: WorldId
   readonly seed: string
-  readonly createdAt: string // ISO timestamp, real-world clock — not a GameTime
+  readonly createdAt: string
 
   readonly currentGameTime: GameTime
 

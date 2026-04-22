@@ -8,16 +8,15 @@ import {
   REGULAR_MONTH_COUNT,
   daysInMonth,
   monthName
-} from './calendar'
+} from '@hollowdark/time/calendar'
 
 /**
  * A position in game time. Immutable — all arithmetic returns a new value.
  *
- *   year       integer (negative allowed for pre-1111 historical events)
+ *   year       integer (negative allowed for pre-epoch historical events)
  *   month      1..12 for regular months, 13 for year-end festival
  *   day        1..30 for regular months, 1..5 for festival
  *   tickOfDay  0 outside crisis mode; crisis mode subdivides the day
- *              (docs/22-crisis-mode.md)
  */
 export interface GameTime {
   readonly year: number
@@ -61,23 +60,21 @@ function absoluteDays(time: GameTime): number {
 }
 
 function fromAbsoluteDays(abs: number, tickOfDay: number): GameTime {
-  // Guard against non-integer arithmetic drift — time is whole days only,
-  // tickOfDay handles sub-day resolution in crisis mode.
   if (!Number.isFinite(abs)) {
     throw new Error(`Non-finite absolute day count: ${abs}`)
   }
   const year = Math.floor(abs / DAYS_PER_YEAR)
-  const rem = abs - year * DAYS_PER_YEAR // 0..364
-  const doy = rem + 1 // 1..365
-  const festivalStart = REGULAR_MONTH_COUNT * DAYS_PER_MONTH + 1 // 361
+  const rem = abs - year * DAYS_PER_YEAR
+  const doy = rem + 1
+  const festivalStart = REGULAR_MONTH_COUNT * DAYS_PER_MONTH + 1
   let month: number
   let day: number
   if (doy >= festivalStart) {
     month = FESTIVAL_MONTH
-    day = doy - festivalStart + 1 // 1..5
+    day = doy - festivalStart + 1
   } else {
-    month = Math.floor((doy - 1) / DAYS_PER_MONTH) + 1 // 1..12
-    day = ((doy - 1) % DAYS_PER_MONTH) + 1 // 1..30
+    month = Math.floor((doy - 1) / DAYS_PER_MONTH) + 1
+    day = ((doy - 1) % DAYS_PER_MONTH) + 1
   }
   return { year, month, day, tickOfDay }
 }
@@ -105,7 +102,6 @@ export function addMonths(time: GameTime, months: number): GameTime {
   if (!Number.isInteger(months)) {
     throw new Error(`addMonths requires an integer (got ${months})`)
   }
-  // Zero-based cycle arithmetic: months are 1..13, so we work in 0..12.
   const totalCycles = (time.month - 1) + months
   const yearDelta = Math.floor(totalCycles / MONTHS_PER_YEAR)
   const monthIndex = ((totalCycles % MONTHS_PER_YEAR) + MONTHS_PER_YEAR) % MONTHS_PER_YEAR
@@ -171,7 +167,6 @@ export function toAbsoluteDays(time: GameTime): number {
   return absoluteDays(time)
 }
 
-// Re-exports for convenience at the 'time' import.
 export {
   DAYS_PER_MONTH,
   DAYS_PER_WEEK,

@@ -48,7 +48,7 @@ export interface Medication {
 
 /**
  * Hidden even from the character until crisis. The simulation knows; the
- * prose surfaces behaviour, not numbers (docs/08-mental-health.md §"Suicide").
+ * prose surfaces behaviour, never numbers.
  */
 export interface SuicidalRisk {
   readonly current: number

@@ -1,4 +1,4 @@
-import type { Err, Ok, Result } from './types'
+import type { Err, Ok, Result } from '@hollowdark/utils/result/types'
 
 export function isOk<T, E>(r: Result<T, E>): r is Ok<T> {
   return r.ok

@@ -20,7 +20,7 @@ import {
   CONTENT_CACHE_SCHEMA_V1,
   USER_DATA_DB_NAME,
   USER_DATA_SCHEMA_V1
-} from './schema'
+} from '@hollowdark/persistence/schema'
 
 /**
  * A single key/value pair on the Settings table. Keys are short slugs
@@ -62,8 +62,8 @@ export interface CachedAudioTrack {
 
 /**
  * User save data — the player's world(s). Persists forever on device,
- * untouched by content updates (technical/04-persistence.md §"Core
- * decisions"). Changes to this schema require a migration.
+ * untouched by content updates. Changes to this schema require a
+ * migration in `persistence/migrations` (added later).
  */
 export class HollowdarkUserData extends Dexie {
   worlds!: Table<World, string>
@@ -88,7 +88,7 @@ export class HollowdarkUserData extends Dexie {
 /**
  * Content cache — the compiled JSON chunks the client fetched from the
  * CDN. Independently versioned from user data; can be cleared without
- * touching saves (ARCHITECTURE.md §3).
+ * touching saves.
  */
 export class HollowdarkContentCache extends Dexie {
   content!: Table<CachedContentChunk, string>

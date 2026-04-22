@@ -1,4 +1,4 @@
-import type { BaseEntity, PersonId, PlaceId } from './base'
+import type { BaseEntity, PersonId, PlaceId } from '@hollowdark/engine/entities/base'
 
 export type PlaceType = 'region' | 'city' | 'neighborhood' | 'specific_location'
 
@@ -40,7 +40,6 @@ export interface Place extends BaseEntity<PlaceId, 'place'> {
   readonly type: PlaceType
   readonly parentPlaceId: PlaceId | null
 
-  // Present for regions and cities; null for specific locations.
   readonly culture: CultureDescriptor | null
   readonly climate: ClimateDescriptor | null
   readonly economy: EconomicCharacter | null
@@ -48,7 +47,6 @@ export interface Place extends BaseEntity<PlaceId, 'place'> {
 
   readonly population: number
 
-  // Present for specific locations (houses, workplaces); null for containers.
   readonly ownerId: PersonId | null
   readonly currentResidents: readonly PersonId[]
   readonly propertyValue: number | null

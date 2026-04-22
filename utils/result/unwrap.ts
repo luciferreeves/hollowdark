@@ -1,4 +1,4 @@
-import type { Result } from './types'
+import type { Result } from '@hollowdark/utils/result/types'
 
 /**
  * Extract the value from an ok result; throw on error. Reserve for tests

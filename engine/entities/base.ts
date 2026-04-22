@@ -4,7 +4,6 @@ import type { Brand } from '@hollowdark/utils/types/brand'
 /**
  * Branded IDs — string at runtime, distinct at compile time so a PersonId
  * can't silently flow into a slot that expects a RelationshipId.
- * (utils/types/brand.ts)
  */
 export type PersonId = Brand<string, 'PersonId'>
 export type RelationshipId = Brand<string, 'RelationshipId'>
@@ -26,7 +25,6 @@ export type EntityKind = 'person' | 'relationship' | 'institution' | 'place' | '
  * their specific id/kind pair — `Person extends BaseEntity<PersonId, 'person'>`.
  * `deterministicSeed` powers lazy Tier 3 regeneration: given the seed, the
  * entity's trajectory is fully reproducible without persisted state.
- * (ARCHITECTURE.md §26)
  */
 export interface BaseEntity<Id extends string = string, K extends EntityKind = EntityKind> {
   readonly id: Id

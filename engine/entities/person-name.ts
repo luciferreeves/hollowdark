@@ -1,8 +1,8 @@
 /**
  * A character's name as tracked by the simulation. Surnames follow
- * inheritance rules per region/era (docs/19-names.md) — including keep-
- * maiden, hyphenate, matrilineal, and ad-hoc changes — so the structure
- * preserves both the current surname and the maiden form when relevant.
+ * inheritance rules per region and era — including keep-maiden, hyphenate,
+ * matrilineal, and ad-hoc changes — so the structure preserves both the
+ * current surname and the maiden form when relevant.
  */
 export interface PersonName {
   readonly given: string

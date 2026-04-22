@@ -1,4 +1,4 @@
-import type { Err, Ok } from './types'
+import type { Err, Ok } from '@hollowdark/utils/result/types'
 
 export function ok<T>(value: T): Ok<T> {
   return { ok: true, value }

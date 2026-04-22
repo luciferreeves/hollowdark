@@ -1,8 +1,7 @@
 /**
- * The Hollowdark calendar: 12 months × 30 days + a 5-day year-end festival,
- * 365 days per year, 7-day weeks.
+ * Number of days in a regular month.
  *
- * Month order (per docs/01-world.md and style-bible/00-style-bible.md):
+ * Month order:
  *
  *   spring    1  Thawing       2  Greening       3  Blossomtide
  *   summer    4  Highsun       5  Amberhaze      6  Harvestmark
@@ -10,20 +9,30 @@
  *   winter   10  Rainfall     11  Hollowdark    12  Rimefrost
  *   festival 13  Year's End Festival (5 days)
  *
- * The year begins with Thawing (spring) and closes with the festival,
- * which sits between Rimefrost and the next year's Thawing. This matches
- * the style bible's cold-half / warm-half grouping and the "year-end
- * festival" phrasing in world lore.
+ * The year begins with Thawing and closes with the festival, which sits
+ * between Rimefrost and the next year's Thawing.
  */
-
 export const DAYS_PER_MONTH = 30
+
+/** Twelve named months — all except the festival. */
 export const REGULAR_MONTH_COUNT = 12
+
+/** Days in the Year's End Festival — the thirteenth "month". */
 export const FESTIVAL_DAYS = 5
+
+/** Month index for the festival. */
 export const FESTIVAL_MONTH = 13
-export const MONTHS_PER_YEAR = REGULAR_MONTH_COUNT + 1 // 12 regular + festival
-export const DAYS_PER_YEAR = REGULAR_MONTH_COUNT * DAYS_PER_MONTH + FESTIVAL_DAYS // 365
+
+/** Total month slots in the calendar cycle (12 regular + festival). */
+export const MONTHS_PER_YEAR = REGULAR_MONTH_COUNT + 1
+
+/** Days in a year: 12 × 30 + 5 = 365. */
+export const DAYS_PER_YEAR = REGULAR_MONTH_COUNT * DAYS_PER_MONTH + FESTIVAL_DAYS
+
+/** Seven-day weeks. */
 export const DAYS_PER_WEEK = 7
 
+/** Month names in calendar order. Index 0 is Thawing; index 12 is the festival. */
 export const MONTH_NAMES = [
   'Thawing',
   'Greening',
@@ -40,23 +49,25 @@ export const MONTH_NAMES = [
   "Year's End Festival"
 ] as const
 
+/** The named-month type derived from `MONTH_NAMES`. */
 export type MonthName = (typeof MONTH_NAMES)[number]
 
+/** Four regular seasons plus a distinct `festival` tag for the year-end. */
 export type Season = 'spring' | 'summer' | 'autumn' | 'winter' | 'festival'
 
 const SEASON_BY_MONTH: readonly Season[] = [
-  'spring', // Thawing
-  'spring', // Greening
-  'spring', // Blossomtide
-  'summer', // Highsun
-  'summer', // Amberhaze
-  'summer', // Harvestmark
-  'autumn', // Firstfall
-  'autumn', // Stormturn
-  'autumn', // Ashfall
-  'winter', // Rainfall
-  'winter', // Hollowdark
-  'winter', // Rimefrost
+  'spring',
+  'spring',
+  'spring',
+  'summer',
+  'summer',
+  'summer',
+  'autumn',
+  'autumn',
+  'autumn',
+  'winter',
+  'winter',
+  'winter',
   'festival'
 ]
 
@@ -66,21 +77,33 @@ function validateMonth(monthIndex: number): void {
   }
 }
 
+/**
+ * Return the named month for a 1-based month index. Throws on invalid input.
+ * @param monthIndex 1 (Thawing) through 13 (Year's End Festival).
+ */
 export function monthName(monthIndex: number): MonthName {
   validateMonth(monthIndex)
   return MONTH_NAMES[monthIndex - 1] as MonthName
 }
 
+/**
+ * Return the season label for a 1-based month index. The festival has its
+ * own tag ('festival') rather than reusing one of the four seasons.
+ */
 export function monthSeason(monthIndex: number): Season {
   validateMonth(monthIndex)
   return SEASON_BY_MONTH[monthIndex - 1] as Season
 }
 
+/**
+ * Days in the given month. 30 for regular months, 5 for the festival.
+ */
 export function daysInMonth(monthIndex: number): number {
   validateMonth(monthIndex)
   return monthIndex === FESTIVAL_MONTH ? FESTIVAL_DAYS : DAYS_PER_MONTH
 }
 
+/** True when the supplied month index is the festival slot. */
 export function isFestival(monthIndex: number): boolean {
   return monthIndex === FESTIVAL_MONTH
 }

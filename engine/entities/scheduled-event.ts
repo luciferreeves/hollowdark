@@ -1,10 +1,10 @@
 import type { GameTime } from '@hollowdark/time/gameTime'
-import type { PersonId, ScheduledEventId } from './base'
+import type { PersonId, ScheduledEventId } from '@hollowdark/engine/entities/base'
 
 /**
  * A future event trigger, either at a fixed time or when conditions hold.
  * Taking a bribe at 30 might schedule a `bribery_audit` at +15 years with
- * elevated weight (ARCHITECTURE.md §6 §"Scheduled events").
+ * elevated weight.
  */
 export interface ConditionalTrigger {
   readonly kind: 'conditional'

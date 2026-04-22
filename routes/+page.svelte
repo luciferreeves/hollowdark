@@ -1,5 +1,4 @@
 <script lang="ts">
-  // Main play screen. Placeholder until the flow stream is wired up in step 4+.
 </script>
 
 <main class="placeholder">
