@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte'
   import { createRNG } from '@hollowdark/rng/seeded'
+  import { reduceMotion } from '@hollowdark/lib/display/state'
   import { LEAF_VARIANTS } from '@hollowdark/lib/leaves/variants'
   import { spawnLeaf } from '@hollowdark/lib/leaves/spawn'
   import { isLeafOffscreen, stepLeaf } from '@hollowdark/lib/leaves/physics'
@@ -17,7 +18,7 @@
 
   const rng = createRNG(Math.floor(performance.now() * 1000) | 0)
 
-  let container: HTMLDivElement | null = null
+  let container: HTMLDivElement | null = $state(null)
   let scene: SceneDimensions = $state({ width: 0, height: 0, groundY: 0 })
   let leaves: Leaf[] = $state([])
   let wind: WindSystem = $state(initialWindSystem(rng))
@@ -92,6 +93,7 @@
   })
 </script>
 
+{#if !$reduceMotion}
 <div class="leaf-scene" bind:this={container} aria-hidden="true">
   <svg class="defs" width="0" height="0" focusable="false">
     <defs>
@@ -139,6 +141,7 @@
     </svg>
   {/each}
 </div>
+{/if}
 
 <style>
   .leaf-scene {

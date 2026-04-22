@@ -2,6 +2,8 @@
   import Slider from '@hollowdark/lib/components/Slider.svelte'
   import ToggleSwitch from '@hollowdark/lib/components/ToggleSwitch.svelte'
   import { ambientVolume, masterMuted } from '@hollowdark/lib/audio/state'
+  import { reduceMotion } from '@hollowdark/lib/display/state'
+  import { APP_VERSION_FULL } from '@hollowdark/lib/version/version'
 
   interface Props {
     onBack: () => void
@@ -17,6 +19,10 @@
 
   function setVolume(next: number): void {
     ambientVolume.set(next)
+  }
+
+  function setReduceMotion(next: boolean): void {
+    reduceMotion.set(next)
   }
 </script>
 
@@ -54,6 +60,35 @@
           />
           <span class="slider-value">{volumePercent}%</span>
         </div>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2 class="group-label">Display</h2>
+
+      <div class="row">
+        <div class="row-label">
+          <p class="row-name">Reduce motion</p>
+          <p class="row-hint">
+            Hide the falling leaves and trim long transitions. Overrides
+            the system preference.
+          </p>
+        </div>
+        <ToggleSwitch
+          value={$reduceMotion}
+          label="Reduce motion"
+          onChange={setReduceMotion}
+        />
+      </div>
+    </section>
+
+    <section class="group">
+      <h2 class="group-label">About</h2>
+
+      <div class="about">
+        <p class="about-title">Hollowdark</p>
+        <p class="about-line">Version {APP_VERSION_FULL}</p>
+        <p class="about-line">A literary life simulation.</p>
       </div>
     </section>
   </div>
@@ -162,5 +197,27 @@
     color: var(--color-text-secondary);
     min-width: 3.5ch;
     text-align: right;
+  }
+
+  .about {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-3) 0;
+  }
+
+  .about-title {
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    font-style: italic;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .about-line {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    margin: 0;
   }
 </style>
