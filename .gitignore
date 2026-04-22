@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build output
+.svelte-kit/
+build/
+dist/
+built/
+
+# Local environment
+.env
+.env.local
+.env.*.local
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Claude AI
+.claude/
+
+# Test output
+coverage/
+.nyc_output/
+
+# Cache
+.vite/
+.turbo/
+.cache/
