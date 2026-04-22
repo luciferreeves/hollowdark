@@ -1,0 +1,10 @@
+.claude/
+.svelte-kit/
+build/
+dist/
+built/
+node_modules/
+coverage/
+pnpm-lock.yaml
+*.min.js
+*.min.css
