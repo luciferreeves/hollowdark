@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { CREDITS, type CreditKind } from '@hollowdark/credits/credits'
+  import { CREDITS, type CreditKind } from '@hollowdark/lib/credits/credits'
 
   interface Props {
     onBack: () => void

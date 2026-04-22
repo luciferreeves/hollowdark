@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { APP_VERSION } from '@hollowdark/lib/version/version'
+  import { APP_VERSION } from '@hollowdark/utils/version/version'
 </script>
 
 <p class="app-version">v {APP_VERSION}</p>

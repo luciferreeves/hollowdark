@@ -1,11 +1,11 @@
 <script lang="ts">
   import Slider from '@hollowdark/lib/components/Slider.svelte'
-  import TextSizeChoice from '@hollowdark/lib/components/TextSizeChoice.svelte'
+  import TextSizeChoice from '@hollowdark/lib/reading/TextSizeChoice.svelte'
   import ToggleSwitch from '@hollowdark/lib/components/ToggleSwitch.svelte'
   import { ambientVolume, masterMuted } from '@hollowdark/lib/audio/state'
   import { highContrast, reduceMotion } from '@hollowdark/lib/accessibility/state'
   import { textSize, type TextSize } from '@hollowdark/lib/reading/state'
-  import { APP_VERSION_FULL } from '@hollowdark/lib/version/version'
+  import { APP_VERSION_FULL } from '@hollowdark/utils/version/version'
 
   interface Props {
     onBack: () => void

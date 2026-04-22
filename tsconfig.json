@@ -51,7 +51,6 @@
     "birth/**/*.ts",
     "death/**/*.ts",
     "continuation/**/*.ts",
-    "credits/**/*.ts",
     "worldgen/**/*.ts",
     "persistence/**/*.ts",
     "rng/**/*.ts",
