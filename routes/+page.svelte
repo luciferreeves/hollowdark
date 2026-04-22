@@ -20,7 +20,9 @@
 
   function handleBegin(): void {}
   function handleContinue(): void {}
-  function handleSettings(): void {}
+  function handleSettings(): void {
+    goto(resolve('/settings'))
+  }
   function handleCredits(): void {
     goto(resolve('/credits'))
   }
