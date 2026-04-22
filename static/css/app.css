@@ -1,26 +1,15 @@
-/* ---------------------------------------------------------------------------
- * Hollowdark — global styles and design tokens
- *
- * Component styles live in scoped <style> blocks per ui/00-ui-principles.md
- * and rules/01-code-style.md. This file is the only place for reset, root
- * tokens, scrollbar styling, no-select, and base typography.
- * ------------------------------------------------------------------------ */
-
 :root {
-  /* Colors — dark mode default */
   --color-bg: #13100e;
   --color-text: #e5dfd3;
   --color-text-secondary: #8a8275;
   --color-text-tertiary: #5c564c;
   --color-accent: #b8884a;
-  --color-accent-warm: #c47a2e; /* crisis mode */
+  --color-accent-warm: #c47a2e;
 
-  /* Fonts */
   --font-body: 'Literata', 'Source Serif Pro', Georgia, serif;
   --font-ui: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-memoir: 'Crimson Pro', 'Source Serif Pro', Georgia, serif;
 
-  /* Spacing (8pt grid) */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -29,7 +18,6 @@
   --space-8: 32px;
   --space-12: 48px;
 
-  /* Type scale */
   --text-xs: 11px;
   --text-sm: 13px;
   --text-base: 16px;
@@ -37,25 +25,21 @@
   --text-lg: 21px;
   --text-xl: 28px;
 
-  /* Line height */
   --leading-tight: 1.4;
   --leading-normal: 1.6;
   --leading-loose: 1.75;
 
-  /* Timing */
   --transition-soft: 400ms ease-out;
   --transition-fast: 250ms ease-out;
   --transition-ceremonial: 600ms ease-out;
 }
 
-/* Crisis-mode palette swap. Engaged via body.crisis-mode — see docs/22-crisis-mode.md */
 body.crisis-mode {
   --color-bg: #0f0c0b;
   --color-text: #e5d8c3;
   --color-accent: var(--color-accent-warm);
 }
 
-/* Reset */
 *,
 *::before,
 *::after {
@@ -74,7 +58,6 @@ body {
   line-height: var(--leading-normal);
 }
 
-/* Smooth transitions on root colors so crisis-mode changes feel deliberate */
 body {
   transition:
     background-color var(--transition-ceremonial),
@@ -86,8 +69,6 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-/* Text is not selectable anywhere. This is a reading game, not a document.
- * Exceptions use the .selectable class (rare — input fields in settings only). */
 *,
 *::before,
 *::after {
@@ -109,7 +90,6 @@ img {
   -webkit-user-select: text;
 }
 
-/* Long-content areas scroll smoothly */
 .scrollable {
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -117,7 +97,6 @@ img {
   overscroll-behavior: contain;
 }
 
-/* Scrollbar styling — minimal, nearly invisible, slightly visible on hover */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -141,12 +120,10 @@ img {
   }
 }
 
-/* Base typography — paragraphs */
 p {
   line-height: var(--leading-normal);
 }
 
-/* Buttons carry no default chrome */
 button {
   background: none;
   border: none;
@@ -161,7 +138,6 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
-/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -172,17 +148,6 @@ button:focus-visible {
     scroll-behavior: auto !important;
   }
 }
-
-/* ---------------------------------------------------------------------------
- * Font-face declarations
- *
- * Literata and Inter ship in static/fonts/ under the SIL Open Font License
- * (see static/fonts/Literata.OFL.txt and Inter.OFL.txt). Inter's static
- * distribution is optical-size-tiered; the 18pt variants are tuned for
- * the 13–18px range our UI uses and are aliased here as the base "Inter".
- * Crimson Pro (memoir body) is not yet sourced — the memoir view will add
- * its @font-face block when the screen is built.
- * ------------------------------------------------------------------------ */
 
 @font-face {
   font-family: 'Literata';
