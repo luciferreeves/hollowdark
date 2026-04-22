@@ -1,9 +1,13 @@
 <script lang="ts">
   import AppTitle from '@hollowdark/lib/components/AppTitle.svelte'
   import ProgressBar from '@hollowdark/lib/components/ProgressBar.svelte'
-  import { loadingProgress } from '@hollowdark/loading/progress'
+  import type { LoadingProgress } from '@hollowdark/loading/progress'
 
-  const progress = $derived($loadingProgress)
+  interface Props {
+    progress: LoadingProgress
+  }
+
+  let { progress }: Props = $props()
 </script>
 
 <section class="initial-load">

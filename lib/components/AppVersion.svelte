@@ -1,8 +1,12 @@
 <script lang="ts">
-  import { APP_VERSION } from '@hollowdark/lib/version/version'
+  interface Props {
+    version: string
+  }
+
+  let { version }: Props = $props()
 </script>
 
-<p class="app-version">v {APP_VERSION}</p>
+<p class="app-version">v {version}</p>
 
 <style>
   .app-version {
