@@ -98,7 +98,7 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-md);
   line-height: var(--leading-normal);
-  cursor: url('../cursors/cursor.svg') 9 9, auto;
+  cursor: url('../cursors/cursor.svg') 12 12, auto;
 }
 
 a,
@@ -108,12 +108,12 @@ summary,
 select,
 [role='button'],
 [role='link'] {
-  cursor: url('../cursors/cursor-pointer.svg') 10 10, pointer;
+  cursor: url('../cursors/cursor-pointer.svg') 13 13, pointer;
 }
 
 input,
 textarea {
-  cursor: url('../cursors/cursor.svg') 9 9, text;
+  cursor: url('../cursors/cursor.svg') 12 12, text;
 }
 
 body {
@@ -187,7 +187,6 @@ button {
   border: none;
   color: inherit;
   font: inherit;
-  cursor: pointer;
   padding: 0;
 }
 
