@@ -1,7 +1,7 @@
-
 declare global {
-  namespace App {
-  }
+  namespace App {}
+
+  const __APP_VERSION__: string
 }
 
 export {}

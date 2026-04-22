@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import BeginScreen from '@hollowdark/lib/components/BeginScreen.svelte'
-  import InitialLoadScreen from '@hollowdark/lib/components/InitialLoadScreen.svelte'
+  import BeginScreen from '@hollowdark/lib/screens/BeginScreen.svelte'
+  import InitialLoadScreen from '@hollowdark/lib/screens/InitialLoadScreen.svelte'
   import { runStubInitialLoad } from '@hollowdark/loading/stub'
   import { detectBeginState, type BeginState } from '@hollowdark/loading/session'
 
