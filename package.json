@@ -1,9 +1,9 @@
 {
   "name": "hollowdark",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "A literary life simulation. Modern invented world. One continuous timeline.",
+  "description": "A literary life simulation. Characters live, love, suffer, choose, die. The game tells their lives.",
   "packageManager": "pnpm@10.33.0",
   "engines": {
     "node": ">=20.11"

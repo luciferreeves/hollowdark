@@ -23,7 +23,7 @@ const config = {
       hooks: {
         client: 'hooks/client.ts'
       },
-      lib: 'ui-lib',
+      lib: 'lib',
       params: 'params',
       routes: 'routes',
       serviceWorker: 'service-worker.ts'

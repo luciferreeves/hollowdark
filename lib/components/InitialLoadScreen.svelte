@@ -1,12 +1,15 @@
 <script lang="ts">
-  import ProgressBar from '@hollowdark/ui-lib/components/ProgressBar.svelte'
+  import AppTitle from '@hollowdark/lib/components/AppTitle.svelte'
+  import ProgressBar from '@hollowdark/lib/components/ProgressBar.svelte'
   import { loadingProgress } from '@hollowdark/loading/progress'
 
   const progress = $derived($loadingProgress)
 </script>
 
 <section class="initial-load">
-  <p class="title">Hollowdark</p>
+  <div class="top">
+    <AppTitle size={32} letterSpacing={1} />
+  </div>
 
   <div class="bar">
     <ProgressBar value={progress.percentage} />
@@ -27,12 +30,7 @@
     text-align: center;
   }
 
-  .title {
-    font-family: var(--font-body);
-    font-size: 32px;
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: 1px;
+  .top {
     margin-bottom: 120px;
   }
 
@@ -45,7 +43,7 @@
     font-size: 12px;
     color: var(--color-text-secondary);
     letter-spacing: 0.5px;
-    margin-bottom: var(--space-2);
+    margin: 0 0 var(--space-2);
   }
 
   .note {
@@ -53,5 +51,6 @@
     font-size: 11px;
     color: var(--color-text-tertiary);
     letter-spacing: 0.3px;
+    margin: 0;
   }
 </style>

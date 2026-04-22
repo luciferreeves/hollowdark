@@ -20,7 +20,7 @@ const gameplayDirectories = [
   'rng/**/*.{ts,js,svelte}',
   'time/**/*.{ts,js,svelte}',
   'loading/**/*.{ts,js,svelte}',
-  'ui-lib/**/*.{ts,js,svelte}',
+  'lib/**/*.{ts,js,svelte}',
   'routes/**/*.{ts,js,svelte}',
   'utils/**/*.{ts,js,svelte}'
 ]

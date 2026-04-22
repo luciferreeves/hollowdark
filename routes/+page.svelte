@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import BeginScreen from '@hollowdark/ui-lib/components/BeginScreen.svelte'
-  import InitialLoadScreen from '@hollowdark/ui-lib/components/InitialLoadScreen.svelte'
+  import BeginScreen from '@hollowdark/lib/components/BeginScreen.svelte'
+  import InitialLoadScreen from '@hollowdark/lib/components/InitialLoadScreen.svelte'
   import { runStubInitialLoad } from '@hollowdark/loading/stub'
   import { detectBeginState, type BeginState } from '@hollowdark/loading/session'
 
@@ -19,6 +19,7 @@
   function handleBegin(): void {}
   function handleContinue(): void {}
   function handleSettings(): void {}
+  function handleCredits(): void {}
 </script>
 
 {#if view === 'loading'}
@@ -29,5 +30,6 @@
     onBegin={handleBegin}
     onContinue={handleContinue}
     onSettings={handleSettings}
+    onCredits={handleCredits}
   />
 {/if}
