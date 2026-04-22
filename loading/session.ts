@@ -1,3 +1,6 @@
+import { getPerson } from '@hollowdark/persistence/people'
+import { getCurrentWorld } from '@hollowdark/persistence/worlds'
+
 /**
  * The three states the Begin screen can render.
  *
@@ -16,11 +19,23 @@ export type BeginState =
   | { readonly kind: 'returning-no-active' }
 
 /**
- * Inspect device-local state and decide which Begin variant to show. The
- * real implementation queries IndexedDB for worlds and the currently
- * active player character; while persistence is still being wired up this
- * returns `first-ever` unconditionally.
+ * Inspect device-local state and decide which Begin variant to show. Reads
+ * the single world record (design invariant) and, when a current player
+ * character is set, reads their name for the continue prompt.
  */
 export async function detectBeginState(): Promise<BeginState> {
-  return { kind: 'first-ever' }
+  const world = await getCurrentWorld()
+  if (world === null) return { kind: 'first-ever' }
+
+  const activeId = world.currentPlayerCharacterId
+  if (activeId === null) return { kind: 'returning-no-active' }
+
+  const active = await getPerson(activeId)
+  if (active === null) return { kind: 'returning-no-active' }
+
+  return { kind: 'returning-active', characterName: displayName(active.name) }
+}
+
+function displayName(name: { given: string; preferredName: string | null }): string {
+  return name.preferredName ?? name.given
 }
