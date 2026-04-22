@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { base } from '$app/paths'
+  import { assets } from '$app/paths'
   import AudioPlayer from '@hollowdark/lib/audio/AudioPlayer.svelte'
   import { highContrast, reduceMotion } from '@hollowdark/lib/accessibility/state'
   import { textSize, type TextSize } from '@hollowdark/lib/reading/state'
 
   let { children } = $props()
 
-  const titleTrackSrc = `${base}/audio/title/piano-relaxing.mp3`
+  const titleTrackSrc = `${assets}/audio/title/piano-relaxing.mp3`
 
   const ALL_TEXT_SIZE_CLASSES: readonly string[] = [
     'text-size-small',

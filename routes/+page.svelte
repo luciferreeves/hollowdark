@@ -1,10 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import { goto } from '$app/navigation'
-  import { resolve } from '$app/paths'
+  import { assets, resolve } from '$app/paths'
   import BeginScreen from '@hollowdark/lib/screens/BeginScreen.svelte'
   import InitialLoadScreen from '@hollowdark/lib/screens/InitialLoadScreen.svelte'
-  import { runStubInitialLoad } from '@hollowdark/loading/stub'
+  import { runInitialLoad } from '@hollowdark/loading/content'
   import { detectBeginState, type BeginState } from '@hollowdark/loading/session'
   import {
     hasCompletedInitialLoad,
@@ -18,7 +18,7 @@
 
   onMount(async () => {
     if (!hasCompletedInitialLoad()) {
-      await runStubInitialLoad()
+      await runInitialLoad(assets)
       markInitialLoadComplete()
     }
     beginState = await detectBeginState()

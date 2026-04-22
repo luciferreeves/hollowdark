@@ -62,18 +62,26 @@ export class ContentRegistry {
   }
 }
 
+/** Per-chunk callback used to advance a progress bar as loading proceeds. */
+export type ChunkProgressCallback = (loaded: number, total: number) => void
+
 /**
  * Populate a fresh registry from the supplied manifest. Fetches every
  * chunk whose id begins with a world-content prefix; ignores unknown
  * prefixes so the registry can grow without breaking older clients.
+ * Chunks load in parallel; the callback reports completion order, not
+ * start order.
  */
 export async function populateFromManifest(
   manifest: ContentManifest,
-  baseUrl: string
+  baseUrl: string,
+  onProgress?: ChunkProgressCallback
 ): Promise<ContentRegistry> {
   const registry = new ContentRegistry()
-
   const entries = Object.entries(manifest.chunks)
+  const total = entries.length
+  let loaded = 0
+
   await Promise.all(
     entries.map(async ([chunkId]) => {
       const { data } = await loadChunk(chunkId, manifest, baseUrl)
@@ -84,6 +92,8 @@ export async function populateFromManifest(
       } else if (chunkId.startsWith('world/institutions/')) {
         registry.addInstitution(data as unknown as InstitutionContent)
       }
+      loaded += 1
+      onProgress?.(loaded, total)
     })
   )
 
