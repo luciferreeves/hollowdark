@@ -6,14 +6,21 @@
   import InitialLoadScreen from '@hollowdark/lib/screens/InitialLoadScreen.svelte'
   import { runStubInitialLoad } from '@hollowdark/loading/stub'
   import { detectBeginState, type BeginState } from '@hollowdark/loading/session'
+  import {
+    hasCompletedInitialLoad,
+    markInitialLoadComplete
+  } from '@hollowdark/loading/lifecycle'
 
   type View = 'loading' | 'begin'
 
-  let view: View = $state('loading')
+  let view: View = $state(hasCompletedInitialLoad() ? 'begin' : 'loading')
   let beginState: BeginState = $state({ kind: 'first-ever' })
 
   onMount(async () => {
-    await runStubInitialLoad()
+    if (!hasCompletedInitialLoad()) {
+      await runStubInitialLoad()
+      markInitialLoadComplete()
+    }
     beginState = await detectBeginState()
     view = 'begin'
   })
