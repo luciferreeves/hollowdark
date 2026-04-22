@@ -10,6 +10,8 @@
     hasCompletedInitialLoad,
     markInitialLoadComplete
   } from '@hollowdark/loading/lifecycle'
+  import { saveWorld } from '@hollowdark/persistence/worlds'
+  import { generateWorld } from '@hollowdark/worldgen/world'
 
   type View = 'loading' | 'begin'
 
@@ -25,7 +27,11 @@
     view = 'begin'
   })
 
-  function handleBegin(): void {}
+  async function handleBegin(): Promise<void> {
+    const world = generateWorld()
+    await saveWorld(world)
+    beginState = await detectBeginState()
+  }
   function handleContinue(): void {}
   function handleSettings(): void {
     goto(resolve('/settings'))
