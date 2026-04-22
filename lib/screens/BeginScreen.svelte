@@ -6,7 +6,6 @@
 
   interface Props {
     state: BeginState
-    version: string
     onBegin: () => void
     onContinue?: () => void
     onSettings: () => void
@@ -15,7 +14,6 @@
 
   let {
     state,
-    version,
     onBegin,
     onContinue,
     onSettings,
@@ -30,7 +28,7 @@
 
   <BeginActions {state} {onBegin} {onContinue} {onSettings} {onCredits} />
 
-  <AppVersion {version} />
+  <AppVersion />
 </section>
 
 <style>
