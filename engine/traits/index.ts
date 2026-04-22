@@ -1,6 +1,0 @@
-export type { AttachmentDistribution } from './attachment'
-export type { BigFiveProfile } from './big-five'
-export type { CoreBeliefs } from './core-beliefs'
-export type { DarkTriadProfile } from './dark-triad'
-export type { Gender, SexualOrientation } from './orientation'
-export type { ValuesOrientation } from './values'

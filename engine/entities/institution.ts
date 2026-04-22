@@ -1,4 +1,4 @@
-import type { GameTime } from '@hollowdark/time'
+import type { GameTime } from '@hollowdark/time/gameTime'
 import type { BaseEntity, InstitutionId, PersonId, PlaceId } from './base'
 import type { CultureDescriptor } from './place'
 

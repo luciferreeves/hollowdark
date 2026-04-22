@@ -1,5 +1,5 @@
-import type { GameTime } from '@hollowdark/time'
-import type { Brand } from '@hollowdark/utils'
+import type { GameTime } from '@hollowdark/time/gameTime'
+import type { Brand } from '@hollowdark/utils/types/brand'
 
 /**
  * Branded IDs — string at runtime, distinct at compile time so a PersonId

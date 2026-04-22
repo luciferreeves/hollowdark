@@ -1,4 +1,4 @@
-import type { GameTime } from '@hollowdark/time'
+import type { GameTime } from '@hollowdark/time/gameTime'
 import type { PlaceId } from './base'
 
 /** A span of time a character lived at a specific place. Open-ended if the

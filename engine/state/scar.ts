@@ -1,4 +1,4 @@
-import type { GameTime } from '@hollowdark/time'
+import type { GameTime } from '@hollowdark/time/gameTime'
 
 /**
  * A lasting mark left by a high-weight event. Scars don't decay the way

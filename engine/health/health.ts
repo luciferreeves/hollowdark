@@ -1,4 +1,4 @@
-import type { GameTime } from '@hollowdark/time'
+import type { GameTime } from '@hollowdark/time/gameTime'
 
 export type EatingPattern = 'poor' | 'irregular' | 'moderate' | 'good' | 'athletic'
 

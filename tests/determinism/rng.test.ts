@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest'
-import { createRNG, deriveSeed, hashString } from '@hollowdark/rng'
+import { deriveSeed, hashString } from '@hollowdark/rng/derive'
+import { createRNG } from '@hollowdark/rng/seeded'
 
 describe('hashString', () => {
   test('is deterministic', () => {

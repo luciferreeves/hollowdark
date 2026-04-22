@@ -1,16 +1,18 @@
-import type { GameTime } from '@hollowdark/time'
-import type { CareerState } from '../career'
-import type { EconomicState } from '../economics'
-import type { HealthState, MentalHealthState, Condition } from '../health'
-import type { Dependency, MoodState, SatisfactionProfile, Scar } from '../state'
-import type {
-  AttachmentDistribution,
-  BigFiveProfile,
-  CoreBeliefs,
-  DarkTriadProfile,
-  SexualOrientation,
-  ValuesOrientation
-} from '../traits'
+import type { GameTime } from '@hollowdark/time/gameTime'
+import type { CareerState } from '../career/career'
+import type { EconomicState } from '../economics/economic'
+import type { Condition, HealthState } from '../health/health'
+import type { MentalHealthState } from '../health/mental-health'
+import type { Dependency } from '../state/dependency'
+import type { MoodState } from '../state/mood'
+import type { SatisfactionProfile } from '../state/satisfaction'
+import type { Scar } from '../state/scar'
+import type { AttachmentDistribution } from '../traits/attachment'
+import type { BigFiveProfile } from '../traits/big-five'
+import type { CoreBeliefs } from '../traits/core-beliefs'
+import type { DarkTriadProfile } from '../traits/dark-triad'
+import type { SexualOrientation } from '../traits/orientation'
+import type { ValuesOrientation } from '../traits/values'
 import type { BaseEntity, PersonId, PlaceId, RelationshipId } from './base'
 import type { EventLogEntry } from './event-log-entry'
 import type { PersonName } from './person-name'

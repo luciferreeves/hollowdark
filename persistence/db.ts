@@ -1,19 +1,17 @@
 import Dexie, { type Table } from 'dexie'
 
-import type {
-  EventLogEntry,
-  FlowEntry,
-  Institution,
-  Memoir,
-  Person,
-  Place,
-  Relationship,
-  Routine,
-  ScheduledEvent,
-  World,
-  WorldEvent
-} from '@hollowdark/engine'
-import type { JsonValue } from '@hollowdark/utils'
+import type { EventLogEntry } from '@hollowdark/engine/entities/event-log-entry'
+import type { FlowEntry } from '@hollowdark/engine/entities/flow-entry'
+import type { Institution } from '@hollowdark/engine/entities/institution'
+import type { Memoir } from '@hollowdark/engine/entities/memoir'
+import type { Person } from '@hollowdark/engine/entities/person'
+import type { Place } from '@hollowdark/engine/entities/place'
+import type { Relationship } from '@hollowdark/engine/entities/relationship'
+import type { Routine } from '@hollowdark/engine/entities/routine'
+import type { ScheduledEvent } from '@hollowdark/engine/entities/scheduled-event'
+import type { World } from '@hollowdark/engine/entities/world'
+import type { WorldEvent } from '@hollowdark/engine/entities/world-event'
+import type { JsonValue } from '@hollowdark/utils/types/json'
 
 import {
   AUDIO_CACHE_DB_NAME,

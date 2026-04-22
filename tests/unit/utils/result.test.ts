@@ -1,15 +1,9 @@
 import { describe, expect, test } from 'vitest'
-import {
-  err,
-  isErr,
-  isOk,
-  mapErr,
-  mapResult,
-  ok,
-  unwrap,
-  unwrapOr,
-  type Result
-} from '@hollowdark/utils/result'
+import { err, ok } from '@hollowdark/utils/result/constructors'
+import { mapErr, mapResult } from '@hollowdark/utils/result/map'
+import { isErr, isOk } from '@hollowdark/utils/result/predicates'
+import type { Result } from '@hollowdark/utils/result/types'
+import { unwrap, unwrapOr } from '@hollowdark/utils/result/unwrap'
 
 describe('Result constructors and predicates', () => {
   test('ok wraps a value', () => {

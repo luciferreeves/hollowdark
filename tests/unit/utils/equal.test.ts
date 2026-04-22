@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { deepEqual } from '@hollowdark/utils/equal'
+import { deepEqual } from '@hollowdark/utils/equal/deep'
 
 describe('deepEqual — primitives', () => {
   test('identical primitives', () => {
