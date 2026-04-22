@@ -1,5 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte'
+  import { goto } from '$app/navigation'
+  import { resolve } from '$app/paths'
   import BeginScreen from '@hollowdark/lib/screens/BeginScreen.svelte'
   import InitialLoadScreen from '@hollowdark/lib/screens/InitialLoadScreen.svelte'
   import { runStubInitialLoad } from '@hollowdark/loading/stub'
@@ -19,7 +21,9 @@
   function handleBegin(): void {}
   function handleContinue(): void {}
   function handleSettings(): void {}
-  function handleCredits(): void {}
+  function handleCredits(): void {
+    goto(resolve('/credits'))
+  }
 </script>
 
 {#if view === 'loading'}

@@ -15,6 +15,7 @@ const gameplayDirectories = [
   'birth/**/*.{ts,js,svelte}',
   'death/**/*.{ts,js,svelte}',
   'continuation/**/*.{ts,js,svelte}',
+  'credits/**/*.{ts,js,svelte}',
   'worldgen/**/*.{ts,js,svelte}',
   'persistence/**/*.{ts,js,svelte}',
   'rng/**/*.{ts,js,svelte}',
@@ -93,6 +94,12 @@ export default ts.config(
     rules: {
       'no-restricted-syntax': 'off',
       '@typescript-eslint/no-explicit-any': 'off'
+    }
+  },
+  {
+    files: ['lib/screens/CreditsScreen.svelte'],
+    rules: {
+      'svelte/no-navigation-without-resolve': 'off'
     }
   }
 )
